@@ -3,6 +3,7 @@
 package com.example.jetpackcomposeinstagram
 
 import android.app.Activity
+import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -87,9 +88,15 @@ fun Body(modifier: Modifier) {
 
         ImageLogo(Modifier.align(CenterHorizontally))
         Spacer(modifier.padding(16.dp))
-        Email(email) { email = it }
+        Email(email) {
+            email = it
+            isLoginEnable = enableLogin(email, password)
+        }
         Spacer(modifier.padding(4.dp))
-        Password(password) { password = it }
+        Password(password) {
+            password = it
+            isLoginEnable = enableLogin(email, password)
+        }
         Spacer(modifier.padding(8.dp))
         forgotPassword(Modifier.align(Alignment.End))
         Spacer(modifier.padding(16.dp))
@@ -151,7 +158,7 @@ fun SocialLogin() {
     ){
         Image(painter = painterResource(id = R.drawable.fb), contentDescription = "Social login FaceBook", modifier = Modifier.size(20.dp))
         Text(
-            text = "Continue as Jose",
+            text = "Continue as Osvaldo",
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(horizontal = 8.dp),
@@ -200,6 +207,11 @@ fun LoginButton(loginEnable: Boolean) {
     ) {
         Text(text = "Log In")
     }
+}
+
+fun enableLogin(email: String, password: String):Boolean{
+    return Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length > 6
+    //Comprobar si el email es valido y la contraseña cumple con los requisitos
 }
 
 @Composable
