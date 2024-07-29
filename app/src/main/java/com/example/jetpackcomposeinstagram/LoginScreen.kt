@@ -253,7 +253,7 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
             focusedIndicatorColor = Color.Gray
         ),
         maxLines = 1,//limita el texto a 1 linea
-        singleLine = true,
+        singleLine = true,//limita el texto una linea = true
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),//Tipo de teclado al marcar el TextField
         trailingIcon = {
             val imagen = if(passwordVisibility){
